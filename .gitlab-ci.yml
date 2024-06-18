@@ -3,7 +3,6 @@ stages:
 
 test-job:
   stage: test
-  image: ubuntu:22.04
   script:
     - echo "Running tests..."
     - ./success.sh
@@ -11,4 +10,4 @@ test-job:
   retry:
     max: 2  # 最大2回まで再実行
   after_script:
-    - ./.failed.sh
+    - ./failed.sh
