@@ -1,0 +1,14 @@
+stages:
+  - test
+
+test-job:
+  stage: test
+  script:
+    - echo "Running tests..."
+    - exit 1  # 失敗をシミュレート
+  retry:
+    max: 2  # 最大2回まで再実行
+  after_script:
+    - if [ "$CI_JOB_STATUS" == "failed" ]; then
+        echo "error"
+      fi
