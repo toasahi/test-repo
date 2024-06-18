@@ -3,6 +3,7 @@ stages:
 
 test-job:
   stage: test
+  image: ubuntu:22.04
   script:
     - echo "Running tests..."
     - if [ "$CI_JOB_STATUS" == "success" ]; then
