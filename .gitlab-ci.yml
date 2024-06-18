@@ -5,9 +5,11 @@ test-job:
   stage: test
   script:
     - echo "Running tests..."
+    - chmod 777 ./success.sh
     - ./success.sh
     - exit 1  # 失敗をシミュレート
   retry:
     max: 2  # 最大2回まで再実行
   after_script:
+    - - chmod 777 ./failed.sh
     - ./failed.sh
