@@ -1,7 +1,7 @@
 stages:
   - unit-test
 
-.test-result:
+test-result:
   stage: unit-test
   script:
     - mkdir -p unit-test/${COMPONENT}
@@ -9,7 +9,6 @@ stages:
   artifacts:
     paths:
       - unit-test/
-
 
 unit-test-result-web:
   extends: test-result
