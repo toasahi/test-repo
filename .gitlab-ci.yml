@@ -1,7 +1,7 @@
 stages:
   - unit-test
 
-test-result:
+.test-result:
   stage: unit-test
   script:
     - mkdir -p unit-test/${COMPONENT}
@@ -11,16 +11,16 @@ test-result:
       - unit-test/
 
 unit-test-result-web:
-  extends: test-result
+  extends: .test-result
   variables:
     COMPONENT: web
 
 unit-test-result-bff:
-  extends: test-result
+  extends: .test-result
   variables:
     COMPONENT: bff
 
 unit-test-result-service:
-  extends: test-result
+  extends: .test-result
   variables:
     COMPONENT: service
