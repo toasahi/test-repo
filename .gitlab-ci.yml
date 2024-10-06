@@ -7,9 +7,12 @@ stages:
   script:
     - mkdir -p unit-test/${COMPONENT}
     - echo "unit-test-result-${COMPONENT}" >> unit-test/${COMPONENT}/unit-test-result-${COMPONENT}.txt
+    - echo "UNIT_TEST_JOB_${COMPONENT}_ID=${CI_JOB_ID}" >> ${COMPONENT}.env
   artifacts:
     paths:
       - unit-test
+    reports:
+      - ${COMPONENT}.env
 
 unit-test-result-web:
   extends: .test-result
@@ -26,6 +29,7 @@ unit-test-result-service:
   variables:
     COMPONENT: service
 
+# JOBのURLは全てのテストで同じテストをダウンロードできる。
 unit-test-collect:
   stage: collect
   script:
