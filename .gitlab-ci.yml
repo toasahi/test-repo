@@ -1,15 +1,11 @@
 stages:
-  - test
+  - unit-test
 
-test-job:
+unit-test-result-web:
   stage: test
   script:
-    - echo "Running tests..."
-    - chmod 777 ./success.sh
-    - ./success.sh
-    - exit 1  # 失敗をシミュレート
-  retry:
-    max: 2  # 最大2回まで再実行
-  after_script:
-    - - chmod 777 ./failed.sh
-    - ./failed.sh
+    - mkdir -p unit-test/web
+    - echo "unit-test-result-web" >> unit-test/unit-test-result-web.txt
+  artifacts:
+    paths:
+      - unit-test/
