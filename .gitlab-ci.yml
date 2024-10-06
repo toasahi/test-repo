@@ -7,7 +7,7 @@ stages:
   script:
     - mkdir -p unit-test/${COMPONENT}
     - echo "unit-test-result-${COMPONENT}" >> unit-test/${COMPONENT}/unit-test-result-${COMPONENT}.txt
-    - echo "UNIT_TEST_JOB_${COMPONENT}_ID=${CI_JOB_ID}" >> ${COMPONENT}.env
+    - echo "UNIT_TEST_JOB_${COMPONENT^^}_ID=${CI_JOB_ID}" >> ${COMPONENT}.env
   artifacts:
     paths:
       - unit-test
