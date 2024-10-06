@@ -1,14 +1,12 @@
 stages:
   - unit-test
+  - collect
 
 .test-result:
   stage: unit-test
   script:
     - mkdir -p unit-test/${COMPONENT}
     - echo "unit-test-result-${COMPONENT}" >> unit-test/${COMPONENT}/unit-test-result-${COMPONENT}.txt
-  artifacts:
-    paths:
-      - unit-test/
 
 unit-test-result-web:
   extends: .test-result
@@ -24,3 +22,19 @@ unit-test-result-service:
   extends: .test-result
   variables:
     COMPONENT: service
+
+unit-test-collect:
+  stage: collect
+  script:
+    - printenv
+  variables:
+    UNIT_TEST_RESULT_WEB_DIR: web
+    UNIT_TEST_RESULT_BFF_DIR: bff
+    UNIT_TEST_RESULT_SERVICE_DIR: service
+  needs:
+    - unit-test-result-web
+    - unit-test-result-bff
+    - unit-test-result-service
+  artifacts:
+    paths:
+      - unit-test/
