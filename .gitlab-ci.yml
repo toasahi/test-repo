@@ -12,7 +12,7 @@ stages:
     paths:
       - unit-test
     reports:
-      - ${COMPONENT}.env
+      dotenv: ${COMPONENT}.env
 
 unit-test-result-web:
   extends: .test-result
