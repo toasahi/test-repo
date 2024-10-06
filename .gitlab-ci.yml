@@ -1,11 +1,27 @@
 stages:
   - unit-test
 
-unit-test-result-web:
+.test-result:
   stage: unit-test
   script:
-    - mkdir -p unit-test/web
-    - echo "unit-test-result-web" >> unit-test/unit-test-result-web.txt
+    - mkdir -p unit-test/${COMPONENT}
+    - echo "unit-test-result-${COMPONENT}" >> unit-test/${COMPONENT}/unit-test-result-${COMPONENT}.txt
   artifacts:
     paths:
       - unit-test/
+
+
+unit-test-result-web:
+  extends: test-result
+  variables:
+    COMPONENT: web
+
+unit-test-result-bff:
+  extends: test-result
+  variables:
+    COMPONENT: bff
+
+unit-test-result-service:
+  extends: test-result
+  variables:
+    COMPONENT: service
