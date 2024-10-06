@@ -26,7 +26,11 @@ unit-test-result-service:
 unit-test-collect:
   stage: collect
   script:
+    - ls
     - printenv
+  after_script:
+    - mkdir -p collect-unit-test-result
+    - cp -r unit-test collect-unit-test-result
   variables:
     UNIT_TEST_RESULT_WEB_DIR: web
     UNIT_TEST_RESULT_BFF_DIR: bff
