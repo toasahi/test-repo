@@ -7,6 +7,9 @@ stages:
   script:
     - mkdir -p unit-test/${COMPONENT}
     - echo "unit-test-result-${COMPONENT}" >> unit-test/${COMPONENT}/unit-test-result-${COMPONENT}.txt
+  artifacts:
+    paths:
+      - unit-test
 
 unit-test-result-web:
   extends: .test-result
@@ -41,4 +44,4 @@ unit-test-collect:
     - unit-test-result-service
   artifacts:
     paths:
-      - unit-test/
+      - collect-unit-test-result/
